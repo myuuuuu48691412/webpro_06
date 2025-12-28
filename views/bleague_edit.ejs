@@ -10,6 +10,7 @@
   <form action="/bleague/update/<%= index %>" method="POST">
     <table>
       <tr><th>項目</th><th>データ</th></tr>
+      <tr><td>ID</td><td><input name="id" value="<%= data.id %>"></td></tr>
       <tr><td>チーム名</td><td><input name="name" value="<%= data.name %>"></td></tr>
       <tr><td>区分(B1/B2)</td><td><input name="division" value="<%= data.division %>"></td></tr>
       <tr><td>地域</td><td><input name="region" value="<%= data.region %>"></td></tr>

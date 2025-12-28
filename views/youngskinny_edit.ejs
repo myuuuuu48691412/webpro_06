@@ -10,6 +10,7 @@
   <form action="/youngskinny/update/<%= index %>" method="POST">
     <table>
       <tr><th>項目</th><th>データ</th></tr>
+      <tr><td>ID</td><td><input name="id" value="<%= data.id %>"></td></tr>
       <tr><td>アルバム名</td><td><input name="title" value="<%= data.title %>"></td></tr>
       <tr><td>発売年</td><td><input name="releaseDate" value="<%= data.releaseDate %>"></td></tr>
       <tr><td>種類</td><td><input name="type" value="<%= data.type %>"></td></tr>
