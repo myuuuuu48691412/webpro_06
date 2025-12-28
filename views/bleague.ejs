@@ -1,0 +1,22 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bリーグ チーム一覧</title>
+</head>
+<body>
+    <h2>Bリーグ チーム一覧</h2>
+<p><a href="/bleague/new">＋ 新規メニュー追加</a></p>
+    <table>
+        <tr><th>ID</th><th>チーム名</th><th>区分</th></tr>
+            <% let number = 0 %>
+            <% for( let row of data ) { %>
+                <tr><td><%= row.id %></td>
+                <td><a href="/bleague/<%= number %>"><%= row.name %></a></td>
+                <td><%= row.division %></td></tr>
+                <% number += 1 %>
+            <% } %>
+    </table>
+</body>
+</html>
+

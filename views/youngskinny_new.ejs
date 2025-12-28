@@ -1,0 +1,28 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>新規アルバム追加</title>
+</head>
+<body>
+  <h2>新規アルバム追加</h2>
+
+  <form action="/youngskinny/create" method="POST">
+    <table>
+      <tr><td>ID</td><td><input name="id"></td></tr>
+      <tr><td>アルバム名</td><td><input name="title"></td></tr>
+      <tr><td>発売年</td><td><input name="year"></td></tr>
+      <tr><td>発売年</td><td><input name="releaseDate"></td></tr>
+      <tr><td>種類</td><td><input name="type"></td></tr>
+      <tr><td>レーベル</td><td><input name="label"></td></tr>
+      <tr><td>収録曲</td><td><input name="tracks"></td></tr>
+      <tr><td>DVD内容</td><td><input name="dvd"></td></tr>
+    </table>
+
+    <input type="submit" value="追加">
+  </form>
+
+  <a href="/youngskinny">一覧へ戻る</a>
+</body>
+</html>
+

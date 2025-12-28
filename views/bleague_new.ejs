@@ -1,0 +1,27 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>新規チーム追加</title>
+</head>
+<body>
+  <h2>新規チーム追加</h2>
+
+  <form action="/bleague/create" method="POST">
+    <table>
+      <tr><td>チーム名</td><td><input name="name"></td></tr>
+      <tr><td>区分(B1/B2)</td><td><input name="division"></td></tr>
+      <tr><td>地域</td><td><input name="region"></td></tr>
+      <tr><td>アリーナ:</td><td><input name="arena"></td></tr>
+      <tr><td>主要メンバー</td><td><input name="players"></td></tr>
+      <tr><td>優勝回数</td><td><input name="championships"></td></tr>
+      <tr><td>設立年</td><td><input name="founded"></td></tr>
+    </table>
+
+    <input type="submit" value="追加">
+  </form>
+
+  <a href="/bleague">一覧へ戻る</a>
+</body>
+</html>
+

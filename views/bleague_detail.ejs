@@ -1,0 +1,21 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><%= data.name %></title>
+</head>
+<body>
+    <h2><%= data.name %>の詳細</h2>
+    <table>
+        <tr><th>項目</th><th>データ</th></tr>
+        <tr><td>地域</td><td><%= data.region %></td></tr>
+        <tr><td>ホームアリーナ</td><td><%= data.arena %></td></tr>
+        <tr><td>主要メンバー</td><td><%= data.players %></td></tr>
+        <tr><td>優勝回数</td><td><%= data.championships %></td></tr>
+        <tr><td>設立年</td><td><%= data.founded %></td></tr>
+    </table>
+    <a href="/bleague/edit/<%= index %>">編集</a>
+    <a href="/bleague">チーム一覧に戻る</a>
+</body>
+</html>
+

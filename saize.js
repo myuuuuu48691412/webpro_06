@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
 app.use("/public", express.static(__dirname + "/public"));
 
 let menu = [
@@ -112,15 +113,78 @@ let menu = [
   { id:95, code:"5306", name:"エクストラ・バージンオリーブオイル", category:"テイクアウト", price:"1200円" },
 ]
 
-
+//一覧
 app.get("/saize", (req, res) => {
-  res.render('saize', { data: menu });
+  res.render("saize", { data: menu });
 });
 
+//追加
+app.get("/saize/new", (req, res) => {
+  res.render("saize_new");
+});
+app.post("/saize/create", (req, res) => {
+  const newItem = {
+    id: Number(req.body.id),
+    code: req.body.code,
+    name: req.body.name,
+    category: req.body.category,
+    price: req.body.price
+  };
+
+  menu.push(newItem);
+  res.redirect("/saize");
+});
+
+//詳細
 app.get("/saize/:number", (req, res) => {
-const number = req.params.number;
-const detail = menu[ number ];
-res.render('saize_detail', {data: detail} );
+  const number = Number(req.params.number);
+  const detail = menu[number];
+  if (!detail) {
+    return res.status(404).send("データがありません");
+  }
+  res.render("saize_detail", {
+    data: detail,
+    index: number
+  });
 });
 
-app.listen(8080, () => console.log("Example app listening on port 8080!"));
+//編集
+app.get("/saize/edit/:number", (req, res) => {
+  const number = Number(req.params.number);
+  const detail = menu[number];
+  if (!detail) {
+    return res.status(404).send("編集対象がありません");
+  }
+  res.render("saize_edit", {
+    data: detail,
+    index: number
+  });
+});
+
+//更新
+app.post("/saize/update/:number", (req, res) => {
+  const number = Number(req.params.number);
+  if (!menu[number]) {
+    return res.status(404).send("更新対象がありません");
+  }
+  menu[number] = {
+    id: Number(req.body.id),
+    code: req.body.code,
+    name: req.body.name,
+    category: req.body.category,
+    price: req.body.price
+  };
+  res.redirect("/saize/" + number);
+});
+app.listen(8080, () => {
+  console.log("Server started: http://localhost:8080/saize");
+});
+
+//削除
+app.post("/saize/delete/:number", (req, res) => {
+  const number = Number(req.params.number);
+  menu.splice(number, 1);
+  res.redirect("/saize");
+});
+
+app.listen(8081, () => console.log("Example app listening on port 8080!"));

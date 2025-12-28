@@ -5,13 +5,13 @@
     <title>サイゼのメニュー</title>
 </head>
 <body>
-    <h2>サイゼのメニュー</h2>
+    <h2>サイゼリヤ メニュー一覧</h2>
+<p><a href="/saize/new">＋ 新規メニュー追加</a></p>
     <table>
-        <tr><th>ID</th><th>注文番号</th><th>商品名</th></tr>
+        <tr><th>ID</th><th>商品名</th></tr>
             <% let number = 0 %>
             <% for( let row of data ) { %>
                 <tr><td><%= row.id %></td>
-                <td><%= row.code %></td>
                 <td><a href="/saize/<%= number %>"><%= row.name %></a></td></tr>
                 <% number += 1 %>
             <% } %>

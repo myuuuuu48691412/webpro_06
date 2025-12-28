@@ -1,0 +1,32 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= data.title %></title>
+</head>
+<body>
+  <h2><%= data.title %>の編集</h2>
+
+  <form action="/youngskinny/update/<%= index %>" method="POST">
+    <table>
+      <tr><th>項目</th><th>データ</th></tr>
+      <tr><td>アルバム名</td><td><input name="title" value="<%= data.title %>"></td></tr>
+      <tr><td>発売年</td><td><input name="releaseDate" value="<%= data.releaseDate %>"></td></tr>
+      <tr><td>種類</td><td><input name="type" value="<%= data.type %>"></td></tr>
+      <tr><td>レーベル</td><td><input name="label" value="<%= data.label %>"></td></tr>
+      <tr><td>収録曲</td><td><input name="tracks" value="<%= data.tracks %>"></td></tr>
+      <tr><td>DVD内容</td><td><input name="dvd" value="<%= data.dvd %>"></td></tr>
+    </table>
+
+    <input type="submit" value="登録">
+  </form>
+
+  <form action="/youngskinny/delete/<%= index %>" method="POST" style="margin-top:10px;">
+  <input type="submit" value="削除"
+         onclick="return confirm('本当に削除しますか？');">
+</form>
+
+  <a href="/youngskinny">アルバム一覧に戻る</a>
+</body>
+</html>
+
