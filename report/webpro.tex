@@ -36,8 +36,11 @@
 
 \title{Webプログラミング Webアプリの表示}
 \author{25G1125 松山優翔}
-\date{2025年7月21日}
+\date{2025年12月28日}
 \maketitle
+
+\section{Github上のリポジトリのURL}
+\url{https://github.com/myuuuuu48691412/webpro_06.git}
 
 \section{開発者向け}
 
@@ -117,7 +120,10 @@ idは識別用として用い，codeはサイゼリヤで客自身が注文す�
 表示処理のみであるため GET メソッドを使用している．\\
 \textbf{/saize/update/:number} : 編集フォームから送信された内容を用いて，指定番号のデータを上書き更新する．
 既存データを変更する処理のため POST メソッドを使用している．\\
-\textbf{/saize/delete/:number} : 指定された番号のメニュー情報を配列から削除する．誤操作防止の観点から GET ではなく POST メソッドを使用している．
+\textbf{/saize/delete/:number} : 指定された番号のメニュー情報を配列から削除する．削除処理はデータを消去する重要な操作であり，誤操作や意図しない実行を防ぐ必要がある．そのため，本システムでは GET メソッドではなく POST メソッドを使用している．GET メソッドは URL へのアクセスだけで処理が実行される可能性があるが．POST メソッドはフォーム送信などの明示的な操作が必要なため，安全性が高い．また，HTML フォームが POST に対応している点も考慮した．誤操作防止の観点から GET ではなく POST メソッドを使用している．
+
+また，本システムにおいて新規メニュー追加画面は，通常のHTMLファイルではなく，EJSを用いて実装している．EJSはHTMLの構造を保ちながら，サーバサイドでJavaScriptを埋め込むことができるテンプレートエンジンであり．Expressと組み合わせることで動的な画面生成が可能となる．本アプリケーションでは．一覧画面，詳細画面，編集画面，新規追加画面といったすべての画面をEJSで統一して実装している．これにより，画面構成や記述方法を統一でファイル管理が容易になるとともに，将来的に共通のヘッダやフッタを追加するなどの拡張にも対応しやすくなる．また，現時点では新規追加画面に動的な表示は含まれていないが，今後idの自動生成結果の表示や，入力エラー時のメッセージ表示，入力補助機能などを追加する場合，EJSを用いることで柔軟に対応できる．静的なHTMLではこのような拡張が困難であるため，テンプレートエンジンを採用することが適切である．
+以上の理由から，本システムでは新規メニュー追加画面をHTMLファイルとして実装するのではなく，Expressの設計思想に沿ったEJSテンプレートとして実装している．下記にわたるシステムも同様である．
 \subsubsection{遷移図}
 ここにサイゼリヤ メニュー管理システムにおいてのデータの遷移図を図1に示す．
 
@@ -315,7 +321,7 @@ idは識別用として用い，titleはヤングスキニーのインディー�
 本システムを運用するために必要な使用するプログラム言語や様々なツールのインストール方法について説明する．まずはじめにmacOSで動作するパッケージマネージャの1つであるhomebrewをインストールする．そのためにターミナルを起動し，以下のコマンドを実行する．
 
 \begin{lstlisting}
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/instal/HEAD/instal.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/instal/HEAD/install.sh)"
 \end{lstlisting}
 
 パスワードの入力が求められる場合はmacOsのログインパスワードを入力し，プロンプトが表示されるまで待つ（パスワードを入力しても画面には何も表示されないので注意）．その次に以下の2つのコマンドを順番に実行する．
@@ -328,7 +334,7 @@ eval "$(/opt/homebrew/bin/brew shelenv)"
 次にnode.jsはバージョン更新が早いので，使用するバージョンを管理するツールが必要となる．そのようなツールの1つがnodebrewである．そこでnodebrewのインストール方法を説明する．まずターミナルを起動し，以下の4つのコマンドを順番に実行する．
 
 \begin{lstlisting}
-brew instal nodebrew
+brew install nodebrew
 nodebrew setup
 echo 'export PATH=$HOME/.nodebrew/current/bin:$PATH' >> ~/.zshrc
 source ~/.zshrc
@@ -337,10 +343,10 @@ source ~/.zshrc
 最後に最新版のnode.jsのインストール方法を説明する．まずターミナルを起動し，以下の4つのコマンドを順番に実行する．
 
 \begin{lstlisting}
-nodebrew instal stable
+nodebrew install stable
 nodebrew ls
 nodebrew use v24.1.0
-npm instal -g npm
+npm install -g npm
 \end{lstlisting}
 
 一応node.jsの確認として以下のコマンドを実行する．
